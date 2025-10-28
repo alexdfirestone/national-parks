@@ -1,0 +1,1 @@
+ALTER TABLE "comments" DROP CONSTRAINT "one_level_replies";
