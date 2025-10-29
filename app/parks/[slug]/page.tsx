@@ -1,9 +1,11 @@
 import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
+import Image from 'next/image'
 import { getParkBySlug, getParks } from '@/lib/sanity/queries'
 import { getThingsByParkSlug } from '@/lib/db/queries'
 import { ThingCard } from '@/components/thing-card'
 import { ThingsListSkeleton } from '@/components/skeletons'
+import { urlFor } from '@/lib/sanity/client'
 import Link from 'next/link'
 
 // Generate static params for known parks
@@ -26,17 +28,24 @@ export default async function ParkPage({ params }: ParkPageProps) {
     notFound()
   }
 
+  const heroImageUrl = park.heroImage?.asset 
+    ? urlFor(park.heroImage).width(1200).height(600).url()
+    : null
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Park Header - Cached in static shell */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-8">
-          {park.heroImage?.asset?.url && (
-            <div className="mb-6 rounded-lg overflow-hidden max-h-96">
-              <img
-                src={park.heroImage.asset.url}
-                alt={park.heroImage.alt || park.name}
-                className="w-full h-full object-cover"
+          {heroImageUrl && (
+            <div className="mb-6 rounded-lg overflow-hidden max-h-96 relative h-96">
+              <Image
+                src={heroImageUrl}
+                alt={park.heroImage?.alt || park.name}
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 1280px) 100vw, 1280px"
               />
             </div>
           )}

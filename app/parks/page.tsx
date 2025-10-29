@@ -1,41 +1,59 @@
+import { Suspense } from 'react'
 import { getParks } from '@/lib/sanity/queries'
-import { ParkCard } from '@/components/park-card'
-import Link from 'next/link'
+import { ParksSearch } from '@/components/parks-search'
+import { ParksListSkeleton } from '@/components/skeletons'
 
-export default async function ParksPage() {
-  const parks = await getParks()
-
+export default function ParksPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            National Parks
-          </h1>
-          <p className="text-lg text-gray-600 mb-4">
-            Explore America's treasured national parks and discover hidden gems.
-          </p>
-          <Link
-            href="/contribute"
-            className="inline-block px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            Share Your Discovery
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {parks.map((park) => (
-            <ParkCard key={park._id} park={park} />
-          ))}
-        </div>
-
-        {parks.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-gray-600">No parks found. Check back soon!</p>
+      {/* Hero Section - Brutalist Header */}
+      <div className="bg-white border-b-4 border-black">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 md:py-8">
+          <div className="relative">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-black leading-none">
+              NATIONAL
+              <br />
+              <span className="text-[#1E7B4D]">PARKS</span>
+            </h1>
+            
+            {/* Decorative pattern */}
+            <div className="absolute -top-4 -right-4 w-24 h-24 hidden lg:block">
+              <svg viewBox="0 0 100 100" className="w-full h-full opacity-20">
+                <circle cx="50" cy="50" r="48" fill="none" stroke="black" strokeWidth="1" />
+                <circle cx="50" cy="50" r="36" fill="none" stroke="black" strokeWidth="1" />
+                <circle cx="50" cy="50" r="24" fill="none" stroke="black" strokeWidth="1" />
+                <circle cx="50" cy="50" r="12" fill="none" stroke="black" strokeWidth="1" />
+              </svg>
+            </div>
           </div>
-        )}
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
+        <Suspense fallback={<ParksListSkeleton />}>
+          <ParksList />
+        </Suspense>
       </div>
     </div>
   )
+}
+
+// Separate component for parks list - will be streamed
+async function ParksList() {
+  const parks = await getParks()
+
+  if (parks.length === 0) {
+    return (
+      <div className="border-2 border-black p-12 text-center bg-white">
+        <p className="text-xl font-mono uppercase tracking-wider text-gray-600">
+          NO PARKS FOUND
+        </p>
+        <p className="mt-2 text-sm text-gray-500">CHECK BACK SOON</p>
+      </div>
+    )
+  }
+
+  return <ParksSearch parks={parks} />
 }
 

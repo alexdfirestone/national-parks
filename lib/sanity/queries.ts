@@ -8,9 +8,10 @@ export interface SanityPark {
   states?: string[]
   summary?: any[]
   heroImage?: {
+    _type: 'image'
     asset: {
       _ref: string
-      url?: string
+      _type: 'reference'
     }
     alt?: string
   }

@@ -7,14 +7,19 @@ export default async function ContributePage() {
   // Fetch parks from Sanity (cached)
   const sanityParks = await getParks()
   
-  // Convert to format needed for form (need DB IDs)
-  // In a real app, you'd query the parks table to get DB IDs
-  // For now, we'll use a simpler approach
-  const parks = sanityParks.map((park) => ({
-    id: 0, // This would be the DB ID in production
-    name: park.name,
-    slug: park.slug.current,
-  }))
+  // Fetch parks from DB to get proper IDs
+  const { db, parks: parksTable } = await import('@/db')
+  const dbParks = await db.select().from(parksTable)
+  
+  // Match Sanity parks with DB parks by slug
+  const parks = sanityParks.map((sanityPark) => {
+    const dbPark = dbParks.find((p) => p.slug === sanityPark.slug.current)
+    return {
+      id: dbPark?.id || 0,
+      name: sanityPark.name,
+      slug: sanityPark.slug.current,
+    }
+  }).filter((park) => park.id !== 0) // Only show parks that exist in DB
 
   // Fetch categories from DB
   const categories = await getCategoriesFromDb()
