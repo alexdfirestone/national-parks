@@ -1,5 +1,5 @@
 import { getParks } from '@/lib/sanity/queries'
-import { getCategoriesFromDb } from '@/lib/db/queries'
+import { getCategoriesFromDb, getParksFromDb } from '@/lib/db/queries'
 import { ContributeForm } from '@/components/contribute-form'
 import Link from 'next/link'
 
@@ -7,9 +7,8 @@ export default async function ContributePage() {
   // Fetch parks from Sanity (cached)
   const sanityParks = await getParks()
   
-  // Fetch parks from DB to get proper IDs
-  const { db, parks: parksTable } = await import('@/db')
-  const dbParks = await db.select().from(parksTable)
+  // Fetch parks from DB to get proper IDs (now cached!)
+  const dbParks = await getParksFromDb()
   
   // Match Sanity parks with DB parks by slug
   const parks = sanityParks.map((sanityPark) => {

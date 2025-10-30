@@ -132,6 +132,24 @@ export async function getCategoriesFromDb() {
   return result
 }
 
+// Get all parks from DB (for contribute form)
+export async function getParksFromDb() {
+  'use cache'
+  cacheTag('parks')
+  cacheLife('hours')
+
+  const result = await db
+    .select({
+      id: parks.id,
+      name: parks.name,
+      slug: parks.slug,
+    })
+    .from(parks)
+    .orderBy(parks.name)
+
+  return result
+}
+
 // Get park ID by slug (helper for mutations)
 export async function getParkIdBySlug(slug: string) {
   const result = await db

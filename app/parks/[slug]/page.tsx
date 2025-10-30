@@ -20,7 +20,8 @@ interface ParkPageProps {
   params: Promise<{ slug: string }>
 }
 
-export default async function ParkPage({ params }: ParkPageProps) {
+// Component that handles params and park data fetching
+async function ParkContent({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const park = await getParkBySlug(slug)
 
@@ -33,7 +34,7 @@ export default async function ParkPage({ params }: ParkPageProps) {
     : null
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <>
       {/* Park Header - Cached in static shell */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-8">
@@ -87,6 +88,33 @@ export default async function ParkPage({ params }: ParkPageProps) {
           <ThingsList slug={slug} />
         </Suspense>
       </div>
+    </>
+  )
+}
+
+export default function ParkPage({ params }: ParkPageProps) {
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Suspense fallback={
+        <div>
+          <div className="bg-white border-b border-gray-200">
+            <div className="max-w-7xl mx-auto px-4 py-8">
+              <div className="animate-pulse">
+                <div className="h-96 bg-gray-200 rounded-lg mb-6"></div>
+                <div className="h-10 bg-gray-200 rounded w-1/3 mb-2"></div>
+                <div className="h-6 bg-gray-200 rounded w-1/4 mb-4"></div>
+                <div className="h-4 bg-gray-200 rounded w-32"></div>
+              </div>
+            </div>
+          </div>
+          <div className="max-w-7xl mx-auto px-4 py-12">
+            <div className="h-8 bg-gray-200 rounded w-1/4 mb-6"></div>
+            <ThingsListSkeleton />
+          </div>
+        </div>
+      }>
+        <ParkContent params={params} />
+      </Suspense>
     </div>
   )
 }
