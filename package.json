@@ -6,21 +6,42 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sanity:dev": "sanity dev",
+    "sanity:deploy": "sanity deploy",
+    "seed:categories": "tsx scripts/seed-categories.ts",
+    "seed:parks": "tsx scripts/seed-parks.ts",
+    "seed:all": "npm run seed:categories && npm run seed:parks",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
+    "@sanity/image-url": "^1.2.0",
+    "@sanity/vision": "^4.11.0",
+    "@vercel/blob": "^2.0.0",
+    "drizzle-orm": "^0.44.7",
+    "next": "16.0.0",
+    "next-sanity": "^11.5.6",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "next": "16.0.0"
+    "sanity": "^4.11.0",
+    "styled-components": "^6.1.19"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@sanity/client": "^6.25.2",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
+    "dotenv": "^16.4.7",
+    "drizzle-kit": "^0.31.5",
     "eslint": "^9",
-    "eslint-config-next": "16.0.0"
+    "eslint-config-next": "16.0.0",
+    "tailwindcss": "^4",
+    "tsx": "^4.19.2",
+    "typescript": "^5"
   }
 }
