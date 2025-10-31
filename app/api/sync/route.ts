@@ -1,35 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server'
-import crypto from 'crypto'
+import { isValidSignature, SIGNATURE_HEADER_NAME } from '@sanity/webhook'
 import { db, parks, categories } from '@/db'
 import { eq } from 'drizzle-orm'
 import { revalidateTag } from 'next/cache'
-
-// Validate Sanity webhook signature
-function isValidSignature(body: string, signature: string | null): boolean {
-  if (!signature) return false
-  
-  const secret = process.env.SANITY_WEBHOOK_SECRET
-  if (!secret) {
-    console.warn('SANITY_WEBHOOK_SECRET not configured')
-    return false
-  }
-
-  const hash = crypto
-    .createHmac('sha256', secret)
-    .update(body)
-    .digest('hex')
-
-  return `sha256=${hash}` === signature
-}
 
 export async function POST(request: NextRequest) {
   try {
     // Get raw body for signature validation
     const body = await request.text()
-    const signature = request.headers.get('sanity-webhook-signature')
+    const signature = request.headers.get(SIGNATURE_HEADER_NAME)
 
     // Validate webhook signature
-    if (!isValidSignature(body, signature)) {
+    const secret = process.env.SANITY_WEBHOOK_SECRET
+    if (!secret) {
+      console.warn('SANITY_WEBHOOK_SECRET not configured')
+      return NextResponse.json(
+        { message: 'Webhook secret not configured' },
+        { status: 500 }
+      )
+    }
+
+    if (!signature || !(await isValidSignature(body, signature, secret))) {
       return NextResponse.json(
         { message: 'Invalid webhook signature' },
         { status: 401 }

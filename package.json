@@ -21,6 +21,7 @@
     "@neondatabase/serverless": "^1.0.2",
     "@sanity/image-url": "^1.2.0",
     "@sanity/vision": "^4.11.0",
+    "@sanity/webhook": "^4.0.4",
     "@vercel/blob": "^2.0.0",
     "drizzle-orm": "^0.44.7",
     "next": "16.0.0",
