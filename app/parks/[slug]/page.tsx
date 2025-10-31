@@ -36,10 +36,10 @@ async function ParkContent({ params }: { params: Promise<{ slug: string }> }) {
   return (
     <>
       {/* Park Header - Cached in static shell */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="bg-white border-b-4 border-black">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 md:py-8">
           {heroImageUrl && (
-            <div className="mb-6 rounded-lg overflow-hidden max-h-96 relative h-96">
+            <div className="mb-6 overflow-hidden relative h-64 md:h-96 border-2 border-black">
               <Image
                 src={heroImageUrl}
                 alt={park.heroImage?.alt || park.name}
@@ -51,36 +51,36 @@ async function ParkContent({ params }: { params: Promise<{ slug: string }> }) {
             </div>
           )}
           
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tighter text-black leading-none mb-4">
             {park.name}
           </h1>
           
           {park.states && park.states.length > 0 && (
-            <p className="text-lg text-gray-600 mb-4">
-              {park.states.join(', ')}
+            <p className="text-sm md:text-base font-mono uppercase tracking-wider text-gray-700 mb-6">
+              {park.states.join(' • ')}
             </p>
           )}
 
           <Link
             href="/parks"
-            className="text-blue-600 hover:text-blue-800 transition-colors"
+            className="inline-block px-4 py-2 border-2 border-black bg-white hover:bg-black hover:text-white transition-colors text-sm font-mono uppercase tracking-wider"
           >
-            ← Back to all parks
+            ← Parks
           </Link>
         </div>
       </div>
 
       {/* Things Section - Streamed with Suspense */}
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="mb-6 flex items-center justify-between">
-          <h2 className="text-2xl font-bold text-gray-900">
-            Recent Discoveries
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
+        <div className="mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b-2 border-black pb-4">
+          <h2 className="text-2xl md:text-4xl font-bold uppercase tracking-tighter text-black">
+            Recent Things
           </h2>
           <Link
             href="/contribute"
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="px-4 py-2 border-2 border-black bg-[#1E7B4D] text-white hover:bg-black transition-colors text-sm font-mono uppercase tracking-wider whitespace-nowrap"
           >
-            Add Discovery
+            + Add Thing
           </Link>
         </div>
 
@@ -94,21 +94,21 @@ async function ParkContent({ params }: { params: Promise<{ slug: string }> }) {
 
 export default function ParkPage({ params }: ParkPageProps) {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Suspense fallback={
         <div>
-          <div className="bg-white border-b border-gray-200">
-            <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className="bg-white border-b-4 border-black">
+            <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 md:py-8">
               <div className="animate-pulse">
-                <div className="h-96 bg-gray-200 rounded-lg mb-6"></div>
-                <div className="h-10 bg-gray-200 rounded w-1/3 mb-2"></div>
-                <div className="h-6 bg-gray-200 rounded w-1/4 mb-4"></div>
-                <div className="h-4 bg-gray-200 rounded w-32"></div>
+                <div className="h-96 bg-gray-200 border-2 border-black mb-6"></div>
+                <div className="h-12 bg-gray-200 w-1/2 mb-4"></div>
+                <div className="h-6 bg-gray-200 w-1/4 mb-6"></div>
+                <div className="h-10 bg-gray-200 w-32"></div>
               </div>
             </div>
           </div>
-          <div className="max-w-7xl mx-auto px-4 py-12">
-            <div className="h-8 bg-gray-200 rounded w-1/4 mb-6"></div>
+          <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
+            <div className="h-10 bg-gray-200 w-1/3 mb-6 border-b-2 border-black pb-4"></div>
             <ThingsListSkeleton />
           </div>
         </div>
@@ -125,16 +125,17 @@ async function ThingsList({ slug }: { slug: string }) {
 
   if (things.length === 0) {
     return (
-      <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
-        <p className="text-gray-600">
-          No discoveries yet. Be the first to share something!
+      <div className="text-center py-12 bg-white border-2 border-black">
+        <p className="text-lg font-mono uppercase tracking-wider text-gray-600">
+          No things yet
         </p>
+        <p className="mt-2 text-sm text-gray-500">Be the first to share something</p>
       </div>
     )
   }
 
   return (
-    <div className="space-y-4">
+    <div className="grid gap-4 md:gap-6">
       {things.map((thing) => (
         <ThingCard key={thing.id} thing={thing} />
       ))}

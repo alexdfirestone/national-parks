@@ -33,20 +33,20 @@ export function ContributeForm({
   }
 
   return (
-    <form action={handleSubmit} className="space-y-6 max-w-2xl">
+    <form action={handleSubmit} className="space-y-6">
       {/* Hidden fields for user info (in real app, would come from auth) */}
       <input type="hidden" name="userName" value={userName} />
       <input type="hidden" name="userProviderId" value={userProviderId} />
 
       <div>
-        <label htmlFor="parkId" className="block text-sm font-medium text-gray-900 mb-2">
+        <label htmlFor="parkId" className="block text-xs font-mono uppercase tracking-wider text-black mb-2">
           Park *
         </label>
         <select
           id="parkId"
           name="parkId"
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full px-4 py-3 border-2 border-black bg-white focus:border-[#1E7B4D] focus:outline-none transition-colors font-mono text-sm"
         >
           <option value="">Select a park</option>
           {parks.map((park) => (
@@ -58,14 +58,14 @@ export function ContributeForm({
       </div>
 
       <div>
-        <label htmlFor="categoryId" className="block text-sm font-medium text-gray-900 mb-2">
+        <label htmlFor="categoryId" className="block text-xs font-mono uppercase tracking-wider text-black mb-2">
           Category *
         </label>
         <select
           id="categoryId"
           name="categoryId"
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full px-4 py-3 border-2 border-black bg-white focus:border-[#1E7B4D] focus:outline-none transition-colors font-mono text-sm"
         >
           <option value="">Select a category</option>
           {categories.map((category) => (
@@ -77,7 +77,7 @@ export function ContributeForm({
       </div>
 
       <div>
-        <label htmlFor="title" className="block text-sm font-medium text-gray-900 mb-2">
+        <label htmlFor="title" className="block text-xs font-mono uppercase tracking-wider text-black mb-2">
           Title *
         </label>
         <input
@@ -86,13 +86,13 @@ export function ContributeForm({
           name="title"
           required
           maxLength={200}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          placeholder="What did you discover?"
+          className="w-full px-4 py-3 border-2 border-black bg-white focus:border-[#1E7B4D] focus:outline-none transition-colors"
+          placeholder="What did you find?"
         />
       </div>
 
       <div>
-        <label htmlFor="body" className="block text-sm font-medium text-gray-900 mb-2">
+        <label htmlFor="body" className="block text-xs font-mono uppercase tracking-wider text-black mb-2">
           Description *
         </label>
         <textarea
@@ -100,13 +100,13 @@ export function ContributeForm({
           name="body"
           required
           rows={6}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          placeholder="Share details about your discovery..."
+          className="w-full px-4 py-3 border-2 border-black bg-white focus:border-[#1E7B4D] focus:outline-none transition-colors resize-none"
+          placeholder="Share details about this thing..."
         />
       </div>
 
       <div>
-        <label htmlFor="image" className="block text-sm font-medium text-gray-900 mb-2">
+        <label htmlFor="image" className="block text-xs font-mono uppercase tracking-wider text-black mb-2">
           Image (optional)
         </label>
         <input
@@ -115,10 +115,10 @@ export function ContributeForm({
           name="image"
           accept="image/*"
           onChange={(e) => setImageFile(e.target.files?.[0] || null)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full px-4 py-3 border-2 border-black bg-white focus:border-[#1E7B4D] focus:outline-none transition-colors file:mr-4 file:py-2 file:px-4 file:border-0 file:text-xs file:font-mono file:uppercase file:tracking-wider file:bg-black file:text-white file:cursor-pointer hover:file:bg-[#1E7B4D]"
         />
         {imageFile && (
-          <p className="mt-2 text-sm text-gray-600">
+          <p className="mt-2 text-xs font-mono text-gray-600">
             Selected: {imageFile.name} ({Math.round(imageFile.size / 1024)} KB)
           </p>
         )}
@@ -127,9 +127,9 @@ export function ContributeForm({
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+        className="w-full px-6 py-4 border-2 border-black bg-[#1E7B4D] text-white font-mono uppercase tracking-wider hover:bg-black disabled:bg-gray-400 disabled:border-gray-400 disabled:cursor-not-allowed transition-colors text-sm"
       >
-        {isSubmitting ? 'Submitting...' : 'Submit Discovery'}
+        {isSubmitting ? 'Submitting...' : 'Submit Thing'}
       </button>
     </form>
   )
