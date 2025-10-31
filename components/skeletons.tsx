@@ -19,15 +19,17 @@ export function ParkCardSkeleton() {
 
 export function ThingCardSkeleton() {
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-4 animate-pulse">
-      <div className="h-5 bg-gray-300 rounded w-3/4 mb-3"></div>
-      <div className="space-y-2 mb-3">
-        <div className="h-4 bg-gray-200 rounded w-full"></div>
-        <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+    <div className="bg-white border-2 border-black p-6 animate-pulse">
+      <div className="h-6 bg-gray-200 w-20 mb-3"></div>
+      <div className="h-8 bg-gray-300 w-3/4 mb-3"></div>
+      <div className="space-y-2 mb-4">
+        <div className="h-4 bg-gray-200 w-full"></div>
+        <div className="h-4 bg-gray-200 w-5/6"></div>
       </div>
-      <div className="flex gap-4 text-sm">
-        <div className="h-4 bg-gray-200 rounded w-24"></div>
-        <div className="h-4 bg-gray-200 rounded w-24"></div>
+      <div className="flex items-center gap-2 pt-3 border-t border-gray-300">
+        <div className="h-3 bg-gray-200 w-24"></div>
+        <div className="w-1 h-1 bg-gray-300 rounded-full"></div>
+        <div className="h-3 bg-gray-200 w-20"></div>
       </div>
     </div>
   )
@@ -35,24 +37,31 @@ export function ThingCardSkeleton() {
 
 export function VotesSkeleton() {
   return (
-    <div className="flex items-center gap-2 animate-pulse">
-      <div className="h-8 w-8 bg-gray-300 rounded"></div>
-      <div className="h-6 w-12 bg-gray-300 rounded"></div>
-      <div className="h-8 w-8 bg-gray-300 rounded"></div>
+    <div className="flex items-center gap-4 animate-pulse">
+      <div className="h-12 w-12 bg-gray-200 border-2 border-black"></div>
+      <div className="h-20 w-20 bg-gray-200 border-2 border-black"></div>
+      <div className="h-12 w-12 bg-gray-200 border-2 border-black"></div>
     </div>
   )
 }
 
 export function CommentsSkeleton() {
   return (
-    <div className="space-y-4">
-      {[1, 2, 3].map((i) => (
-        <div key={i} className="border-l-2 border-gray-200 pl-4 animate-pulse">
-          <div className="h-4 bg-gray-300 rounded w-32 mb-2"></div>
-          <div className="h-4 bg-gray-200 rounded w-full mb-1"></div>
-          <div className="h-4 bg-gray-200 rounded w-4/5"></div>
-        </div>
-      ))}
+    <div className="space-y-6">
+      <div className="h-8 bg-gray-200 w-40 mb-6 pb-3 border-b-2 border-black"></div>
+      <div className="space-y-4">
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="border-l-4 border-gray-300 pl-4 py-2 animate-pulse">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="h-3 bg-gray-300 w-24"></div>
+              <div className="w-1 h-1 bg-gray-300 rounded-full"></div>
+              <div className="h-3 bg-gray-200 w-20"></div>
+            </div>
+            <div className="h-4 bg-gray-200 w-full mb-1"></div>
+            <div className="h-4 bg-gray-200 w-4/5"></div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
@@ -89,7 +98,7 @@ export function ParksListSkeleton() {
 
 export function ThingsListSkeleton() {
   return (
-    <div className="space-y-4">
+    <div className="grid gap-4 md:gap-6">
       {[1, 2, 3, 4].map((i) => (
         <ThingCardSkeleton key={i} />
       ))}

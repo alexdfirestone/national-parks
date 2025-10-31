@@ -24,25 +24,31 @@ export default async function ContributePage() {
   const categories = await getCategoriesFromDb()
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-4xl mx-auto px-4 py-12">
-        <div className="mb-8">
+    <div className="min-h-screen bg-white">
+      {/* Header Section */}
+      <div className="bg-white border-b-4 border-black">
+        <div className="max-w-4xl mx-auto px-4 md:px-8 py-6 md:py-8">
           <Link
             href="/parks"
-            className="text-blue-600 hover:text-blue-800 transition-colors mb-4 inline-block"
+            className="inline-block px-4 py-2 border-2 border-black bg-white hover:bg-black hover:text-white transition-colors text-sm font-mono uppercase tracking-wider mb-6"
           >
-            ← Back to parks
+            ← Parks
           </Link>
           
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Share Your Discovery
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tighter text-black leading-none mb-4">
+            Share Your
+            <br />
+            <span className="text-[#1E7B4D]">Thing</span>
           </h1>
-          <p className="text-lg text-gray-600">
-            Found something interesting at a national park? Share it with the community!
+          <p className="text-sm md:text-base font-mono uppercase tracking-wider text-gray-700">
+            Found something interesting? Share it with the community
           </p>
         </div>
+      </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-8">
+      {/* Form Section */}
+      <div className="max-w-4xl mx-auto px-4 md:px-8 py-8 md:py-12">
+        <div className="bg-white border-2 border-black p-6 md:p-8 mb-6">
           <ContributeForm
             parks={parks}
             categories={categories}
@@ -51,15 +57,28 @@ export default async function ContributePage() {
           />
         </div>
 
-        <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-          <h3 className="font-semibold text-blue-900 mb-2">
-            Guidelines for submissions:
+        {/* Guidelines Section */}
+        <div className="bg-white border-2 border-black p-6">
+          <h3 className="text-lg md:text-xl font-bold uppercase tracking-tighter text-black mb-4 pb-3 border-b-2 border-black">
+            Guidelines
           </h3>
-          <ul className="text-sm text-blue-800 space-y-1 list-disc list-inside">
-            <li>Be respectful and constructive</li>
-            <li>Share genuine discoveries and experiences</li>
-            <li>Include relevant details and context</li>
-            <li>Add photos when possible to illustrate your discovery</li>
+          <ul className="space-y-3">
+            <li className="flex items-start gap-3">
+              <span className="w-1.5 h-1.5 bg-[#1E7B4D] rounded-full mt-2 flex-shrink-0"></span>
+              <span className="text-sm text-gray-800">Be respectful and constructive</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="w-1.5 h-1.5 bg-[#1E7B4D] rounded-full mt-2 flex-shrink-0"></span>
+              <span className="text-sm text-gray-800">Share genuine experiences and insights</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="w-1.5 h-1.5 bg-[#1E7B4D] rounded-full mt-2 flex-shrink-0"></span>
+              <span className="text-sm text-gray-800">Include relevant details and context</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="w-1.5 h-1.5 bg-[#1E7B4D] rounded-full mt-2 flex-shrink-0"></span>
+              <span className="text-sm text-gray-800">Add photos when possible to illustrate your post</span>
+            </li>
           </ul>
         </div>
       </div>

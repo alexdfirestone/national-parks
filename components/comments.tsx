@@ -10,7 +10,7 @@ export async function Comments({ thingId }: { thingId: number }) {
 
   return (
     <div className="space-y-6">
-      <h3 className="text-xl font-semibold text-gray-900">
+      <h3 className="text-xl md:text-2xl font-bold uppercase tracking-tighter text-black pb-3 border-b-2 border-black">
         Comments ({comments.length})
       </h3>
 
@@ -19,31 +19,33 @@ export async function Comments({ thingId }: { thingId: number }) {
           const replies = comments.filter((c) => c.parentId === comment.id)
           return (
             <div key={comment.id} className="space-y-3">
-              <div className="border-l-2 border-blue-500 pl-4">
-                <div className="flex items-baseline gap-2 mb-1">
-                  <span className="font-medium text-gray-900">
+              <div className="border-l-4 border-[#1E7B4D] pl-4 py-2">
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <span className="text-xs font-mono uppercase tracking-wider text-black">
                     {comment.author.name}
                   </span>
-                  <span className="text-sm text-gray-500">
+                  <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+                  <span className="text-xs font-mono text-gray-500">
                     {new Date(comment.createdAt).toLocaleDateString()}
                   </span>
                 </div>
-                <p className="text-gray-700">{comment.body}</p>
+                <p className="text-gray-800 text-sm leading-relaxed">{comment.body}</p>
               </div>
 
               {replies.length > 0 && (
-                <div className="ml-8 space-y-2">
+                <div className="ml-6 md:ml-8 space-y-2">
                   {replies.map((reply) => (
-                    <div key={reply.id} className="border-l-2 border-gray-300 pl-4">
-                      <div className="flex items-baseline gap-2 mb-1">
-                        <span className="font-medium text-gray-900">
+                    <div key={reply.id} className="border-l-2 border-gray-400 pl-4 py-2">
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
+                        <span className="text-xs font-mono uppercase tracking-wider text-black">
                           {reply.author.name}
                         </span>
-                        <span className="text-sm text-gray-500">
+                        <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+                        <span className="text-xs font-mono text-gray-500">
                           {new Date(reply.createdAt).toLocaleDateString()}
                         </span>
                       </div>
-                      <p className="text-gray-700">{reply.body}</p>
+                      <p className="text-gray-800 text-sm leading-relaxed">{reply.body}</p>
                     </div>
                   ))}
                 </div>
@@ -53,23 +55,23 @@ export async function Comments({ thingId }: { thingId: number }) {
         })}
       </div>
 
-      <form action={addComment} className="mt-6">
+      <form action={addComment} className="mt-8 pt-6 border-t-2 border-black">
         <input type="hidden" name="thingId" value={thingId} />
-        <div className="space-y-3">
-          <label htmlFor="comment" className="block text-sm font-medium text-gray-900">
-            Add a comment
+        <div className="space-y-4">
+          <label htmlFor="comment" className="block text-xs font-mono uppercase tracking-wider text-black">
+            Add Comment
           </label>
           <textarea
             id="comment"
             name="body"
-            rows={3}
+            rows={4}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-3 border-2 border-black bg-white focus:border-[#1E7B4D] focus:outline-none transition-colors resize-none"
             placeholder="Share your thoughts..."
           />
           <button
             type="submit"
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="px-6 py-3 border-2 border-black bg-[#1E7B4D] text-white font-mono uppercase tracking-wider hover:bg-black transition-colors text-sm"
           >
             Post Comment
           </button>

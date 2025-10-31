@@ -15,6 +15,9 @@ NEXT_PUBLIC_SANITY_STUDIO_URL=
 # Sanity API (server-side only, for seeding scripts)
 SANITY_API_TOKEN=
 
+# Sanity Webhook (server-side only, for webhook validation)
+SANITY_WEBHOOK_SECRET=
+
 # Alternative Sanity Studio config (fallback)
 SANITY_STUDIO_PROJECT_ID=
 SANITY_STUDIO_DATASET=
@@ -39,4 +42,10 @@ You likely already have these set up. If not:
 Only needed if you're running seed scripts that write to Sanity.
 1. Go to sanity.io/manage → Your Project → API → Tokens
 2. Create a token with write permissions
+
+### SANITY_WEBHOOK_SECRET
+Required for validating webhook requests from Sanity to sync parks and categories.
+1. Generate a secure random string (e.g., `openssl rand -hex 32`)
+2. Add it to your `.env.local`
+3. Use the same secret when configuring the webhook in Sanity (see SANITY_SETUP.md)
 

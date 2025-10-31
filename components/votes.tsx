@@ -5,17 +5,17 @@ export async function Votes({ thingId }: { thingId: number }) {
   const votes = await getVotesForThing(thingId)
 
   return (
-    <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-lg">
+    <div className="flex items-center gap-4">
       <form action={voteThing}>
         <input type="hidden" name="thingId" value={thingId} />
         <input type="hidden" name="value" value="1" />
         <button
           type="submit"
-          className="p-2 text-green-600 hover:bg-green-100 rounded transition-colors"
+          className="p-3 border-2 border-black hover:bg-[#1E7B4D] hover:border-[#1E7B4D] hover:text-white transition-all"
           aria-label="Upvote"
         >
           <svg
-            className="w-6 h-6"
+            className="w-5 h-5"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -23,16 +23,16 @@ export async function Votes({ thingId }: { thingId: number }) {
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth={2}
+              strokeWidth={3}
               d="M5 15l7-7 7 7"
             />
           </svg>
         </button>
       </form>
 
-      <div className="flex flex-col items-center min-w-[60px]">
-        <span className="text-2xl font-bold text-gray-900">{votes.total}</span>
-        <span className="text-xs text-gray-500">
+      <div className="flex flex-col items-center min-w-[80px] border-2 border-black px-4 py-3">
+        <span className="text-3xl font-bold text-black font-mono">{votes.total}</span>
+        <span className="text-xs font-mono uppercase tracking-wider text-gray-600">
           {votes.upvotes}↑ {votes.downvotes}↓
         </span>
       </div>
@@ -42,11 +42,11 @@ export async function Votes({ thingId }: { thingId: number }) {
         <input type="hidden" name="value" value="-1" />
         <button
           type="submit"
-          className="p-2 text-red-600 hover:bg-red-100 rounded transition-colors"
+          className="p-3 border-2 border-black hover:bg-black hover:text-white transition-all"
           aria-label="Downvote"
         >
           <svg
-            className="w-6 h-6"
+            className="w-5 h-5"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -54,7 +54,7 @@ export async function Votes({ thingId }: { thingId: number }) {
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth={2}
+              strokeWidth={3}
               d="M19 9l-7 7-7-7"
             />
           </svg>
