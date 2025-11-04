@@ -1,6 +1,6 @@
 import { cacheTag, cacheLife } from 'next/cache'
-import { db, things, votes, comments, users, parks, categories } from '@/db'
-import { eq, desc, and, sql, isNull } from 'drizzle-orm'
+import { db, things, votes, comments, users, parks, categories, thingImages } from '@/db'
+import { eq, desc, and, sql, isNull, inArray } from 'drizzle-orm'
 
 // Get things for a specific park (streamed, not cached in static shell)
 export async function getThingsByParkSlug(parkSlug: string) {
@@ -36,7 +36,40 @@ export async function getThingsByParkSlug(parkSlug: string) {
     .orderBy(desc(things.createdAt))
     .limit(50)
 
-  return result
+  // Fetch first image for each thing
+  if (result.length > 0) {
+    const thingIds = result.map((t) => t.id)
+    
+    // Get all images for these things, ordered by creation date
+    const images = await db
+      .select({
+        thingId: thingImages.thingId,
+        url: thingImages.url,
+        alt: thingImages.alt,
+      })
+      .from(thingImages)
+      .where(inArray(thingImages.thingId, thingIds))
+      .orderBy(thingImages.createdAt)
+
+    // Create a map of thingId -> first image
+    const imageMap = new Map<number, { url: string; alt: string | null }>()
+    for (const image of images) {
+      if (!imageMap.has(image.thingId)) {
+        imageMap.set(image.thingId, { url: image.url, alt: image.alt })
+      }
+    }
+
+    // Add first image to each thing
+    return result.map((thing) => ({
+      ...thing,
+      image: imageMap.get(thing.id) || null,
+    }))
+  }
+
+  return result.map((thing) => ({
+    ...thing,
+    image: null,
+  }))
 }
 
 // Get a single thing by ID (cached in static shell)
@@ -73,7 +106,23 @@ export async function getThingById(id: number) {
     .where(and(eq(things.id, id), isNull(things.deletedAt)))
     .limit(1)
 
-  return result[0]
+  const thing = result[0]
+  if (!thing) return null
+
+  // Fetch images separately
+  const images = await db
+    .select({
+      id: thingImages.id,
+      url: thingImages.url,
+      alt: thingImages.alt,
+    })
+    .from(thingImages)
+    .where(eq(thingImages.thingId, id))
+
+  return {
+    ...thing,
+    images,
+  }
 }
 
 // Get vote counts for a thing (streamed, very short cache)
