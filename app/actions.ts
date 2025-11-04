@@ -39,6 +39,7 @@ export async function createThing(formData: FormData) {
   const userName = formData.get('userName') as string
   const userProviderId = formData.get('userProviderId') as string
   const imageFile = formData.get('image') as File | null
+  const returnTo = formData.get('returnTo') as string | null
 
   // Get or create user
   const user = await getOrCreateUser(userName, userProviderId)
@@ -81,8 +82,8 @@ export async function createThing(formData: FormData) {
     revalidateTag(`park:${parkData.slug}:things`, 'max')
   }
 
-  // Redirect to the park page
-  redirect(`/parks/${parkData?.slug}`)
+  // Redirect back to where they came from, or to the park page as fallback
+  redirect(returnTo || `/parks/${parkData?.slug}`)
 }
 
 export async function voteThing(formData: FormData) {

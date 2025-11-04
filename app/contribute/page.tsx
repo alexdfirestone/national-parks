@@ -3,7 +3,13 @@ import { getCategoriesFromDb, getParksFromDb } from '@/lib/db/queries'
 import { ContributeForm } from '@/components/contribute-form'
 import Link from 'next/link'
 
-export default async function ContributePage() {
+export default async function ContributePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ returnTo?: string }>
+}) {
+  const { returnTo } = await searchParams
+  
   // Fetch parks from Sanity (cached)
   const sanityParks = await getParks()
   
@@ -29,10 +35,10 @@ export default async function ContributePage() {
       <div className="bg-white border-b-4 border-black">
         <div className="max-w-4xl mx-auto px-4 md:px-8 py-6 md:py-8">
           <Link
-            href="/parks"
+            href={returnTo || "/parks"}
             className="inline-block px-4 py-2 border-2 border-black bg-white hover:bg-black hover:text-white transition-colors text-sm font-mono uppercase tracking-wider mb-6"
           >
-            ← Parks
+            ← Back
           </Link>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tighter text-black leading-none mb-4">
@@ -54,6 +60,7 @@ export default async function ContributePage() {
             categories={categories}
             userName="Guest User"
             userProviderId="guest-user-id"
+            returnTo={returnTo}
           />
         </div>
 

@@ -8,6 +8,7 @@ interface ContributeFormProps {
   categories: Array<{ id: number; name: string; slug: string }>
   userName: string
   userProviderId: string
+  returnTo?: string
 }
 
 export function ContributeForm({
@@ -15,6 +16,7 @@ export function ContributeForm({
   categories,
   userName,
   userProviderId,
+  returnTo,
 }: ContributeFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [imageFile, setImageFile] = useState<File | null>(null)
@@ -37,6 +39,7 @@ export function ContributeForm({
       {/* Hidden fields for user info (in real app, would come from auth) */}
       <input type="hidden" name="userName" value={userName} />
       <input type="hidden" name="userProviderId" value={userProviderId} />
+      {returnTo && <input type="hidden" name="returnTo" value={returnTo} />}
 
       <div>
         <label htmlFor="parkId" className="block text-xs font-mono uppercase tracking-wider text-black mb-2">

@@ -77,7 +77,7 @@ async function ParkContent({ params }: { params: Promise<{ slug: string }> }) {
             Recent Things
           </h2>
           <Link
-            href="/contribute"
+            href={`/contribute?returnTo=/parks/${slug}`}
             className="px-4 py-2 border-2 border-black bg-[#1E7B4D] text-white hover:bg-black transition-colors text-sm font-mono uppercase tracking-wider whitespace-nowrap"
           >
             + Add Thing
