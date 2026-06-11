@@ -31,28 +31,6 @@ async function ContributeFormContent({
   const categories = await getCategoriesFromDb()
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header Section */}
-      <div className="bg-white border-b-4 border-black">
-        <div className="max-w-4xl mx-auto px-4 md:px-8 py-6 md:py-8">
-          <Link
-            href={returnTo || "/parks"}
-            className="inline-block px-4 py-2 border-2 border-black bg-white hover:bg-black hover:text-white transition-colors text-sm font-mono uppercase tracking-wider mb-6"
-          >
-            ← Back
-          </Link>
-          
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tighter text-black leading-none mb-4">
-            Share Your
-            <br />
-            <span className="text-[var(--accent)]">Thing</span>
-          </h1>
-          <p className="text-sm md:text-base font-mono uppercase tracking-wider text-gray-700">
-            Found something interesting? Share it with the community
-          </p>
-        </div>
-      </div>
-
     <>
       {/* Form Section */}
       <div className="max-w-4xl mx-auto px-4 md:px-8 py-8 md:py-12">
@@ -136,7 +114,7 @@ export default function ContributePage({
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tighter text-black leading-none mb-4">
             Share Your
             <br />
-            <span className="text-[#1E7B4D]">Thing</span>
+            <span className="text-[var(--accent)]">Thing</span>
           </h1>
           <p className="text-sm md:text-base font-mono uppercase tracking-wider text-gray-700">
             Found something interesting? Share it with the community
