@@ -31,45 +31,42 @@ async function ContributeFormContent({
   const categories = await getCategoriesFromDb()
 
   return (
-    <>
-      {/* Form Section */}
-      <div className="max-w-4xl mx-auto px-4 md:px-8 py-8 md:py-12">
-        <div className="bg-white border-2 border-black p-6 md:p-8 mb-6">
-          <ContributeForm
-            parks={parks}
-            categories={categories}
-            userName="Guest User"
-            userProviderId="guest-user-id"
-            returnTo={returnTo}
-          />
-        </div>
-
-        {/* Guidelines Section */}
-        <div className="bg-white border-2 border-black p-6">
-          <h3 className="text-lg md:text-xl font-bold uppercase tracking-tighter text-black mb-4 pb-3 border-b-2 border-black">
-            Guidelines
-          </h3>
-          <ul className="space-y-3">
-            <li className="flex items-start gap-3">
-              <span className="w-1.5 h-1.5 bg-[var(--accent)] rounded-full mt-2 flex-shrink-0"></span>
-              <span className="text-sm text-gray-800">Be respectful and constructive</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="w-1.5 h-1.5 bg-[var(--accent)] rounded-full mt-2 flex-shrink-0"></span>
-              <span className="text-sm text-gray-800">Share genuine experiences and insights</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="w-1.5 h-1.5 bg-[var(--accent)] rounded-full mt-2 flex-shrink-0"></span>
-              <span className="text-sm text-gray-800">Include relevant details and context</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="w-1.5 h-1.5 bg-[var(--accent)] rounded-full mt-2 flex-shrink-0"></span>
-              <span className="text-sm text-gray-800">Add photos when possible to illustrate your post</span>
-            </li>
-          </ul>
-        </div>
+    <div className="max-w-4xl mx-auto px-4 md:px-8 py-8 md:py-12">
+      <div className="bg-white border-2 border-black p-6 md:p-8 mb-6">
+        <ContributeForm
+          parks={parks}
+          categories={categories}
+          userName="Guest User"
+          userProviderId="guest-user-id"
+          returnTo={returnTo}
+        />
       </div>
-    </>
+
+      {/* Guidelines Section */}
+      <div className="bg-white border-2 border-black p-6">
+        <h3 className="text-lg md:text-xl font-bold uppercase tracking-tighter text-black mb-4 pb-3 border-b-2 border-black">
+          Guidelines
+        </h3>
+        <ul className="space-y-3">
+          <li className="flex items-start gap-3">
+            <span className="w-1.5 h-1.5 bg-[var(--accent)] rounded-full mt-2 flex-shrink-0"></span>
+            <span className="text-sm text-gray-800">Be respectful and constructive</span>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="w-1.5 h-1.5 bg-[var(--accent)] rounded-full mt-2 flex-shrink-0"></span>
+            <span className="text-sm text-gray-800">Share genuine experiences and insights</span>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="w-1.5 h-1.5 bg-[var(--accent)] rounded-full mt-2 flex-shrink-0"></span>
+            <span className="text-sm text-gray-800">Include relevant details and context</span>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="w-1.5 h-1.5 bg-[var(--accent)] rounded-full mt-2 flex-shrink-0"></span>
+            <span className="text-sm text-gray-800">Add photos when possible to illustrate your post</span>
+          </li>
+        </ul>
+      </div>
+    </div>
   )
 }
 
