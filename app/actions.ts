@@ -2,7 +2,7 @@
 
 import { revalidateTag, updateTag } from 'next/cache'
 import { redirect } from 'next/navigation'
-import { db, things, votes, comments, users } from '@/db'
+import { db, things, votes, comments, users, thingImages } from '@/db'
 import { eq, and } from 'drizzle-orm'
 import { put } from '@vercel/blob'
 import { getParkIdBySlug } from '@/lib/db/queries'
@@ -64,7 +64,14 @@ export async function createThing(formData: FormData) {
         access: 'public',
         token: process.env.BLOB_READ_WRITE_TOKEN,
       })
-      // In a real app, you'd store this URL in the thing_images table
+      
+      // Save image URL to database
+      await db.insert(thingImages).values({
+        thingId: thing.id,
+        url: blob.url,
+        alt: imageFile.name, // Use filename as alt text for now
+      })
+      
       console.log('Image uploaded:', blob.url)
     } catch (error) {
       console.error('Image upload failed:', error)

@@ -43,6 +43,20 @@ async function ThingContent({ params }: { params: Promise<{ slug: string; id: st
           {thing.title}
         </h1>
 
+        {/* Display images if available */}
+        {thing.images && thing.images.length > 0 && (
+          <div className="mb-6 space-y-4">
+            {thing.images.map((image) => (
+              <img
+                key={image.id}
+                src={image.url}
+                alt={image.alt || thing.title}
+                className="w-full h-auto border-2 border-black"
+              />
+            ))}
+          </div>
+        )}
+
         <div className="flex items-center gap-3 text-xs font-mono uppercase tracking-wider text-gray-600 mb-8 pb-6 border-b-2 border-black">
           <span>{thing.author.name}</span>
           <span className="w-1 h-1 bg-black rounded-full"></span>
