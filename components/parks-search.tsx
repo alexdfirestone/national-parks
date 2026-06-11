@@ -42,7 +42,7 @@ export function ParksSearch({ parks }: ParksSearchProps) {
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              className="absolute right-6 top-1/2 -translate-y-1/2 text-black hover:text-[#1E7B4D] transition-colors text-xl md:text-2xl font-bold"
+              className="absolute right-6 top-1/2 -translate-y-1/2 text-black hover:text-[var(--accent)] transition-colors text-xl md:text-2xl font-bold"
               aria-label="Clear search"
             >
               ✕
@@ -95,4 +95,3 @@ export function ParksSearch({ parks }: ParksSearchProps) {
     </div>
   )
 }
-

@@ -34,7 +34,7 @@ async function ThingContent({ params }: { params: Promise<{ slug: string; id: st
       {/* Thing Content - Cached in static shell */}
       <article className="bg-white border-2 border-black p-6 md:p-8 mb-6">
         <div className="mb-6">
-          <span className="inline-block px-3 py-1 border-2 border-black bg-[#1E7B4D] text-white text-xs font-mono uppercase tracking-wider">
+          <span className="inline-block px-3 py-1 border-2 border-black bg-[var(--accent)] text-white text-xs font-mono uppercase tracking-wider">
             {thing.category.name}
           </span>
         </div>
@@ -115,4 +115,3 @@ export default function ThingPage({ params }: ThingPageProps) {
     </div>
   )
 }
-

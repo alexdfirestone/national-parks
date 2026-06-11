@@ -29,7 +29,7 @@ export function ThingCard({ thing }: ThingCardProps) {
   return (
     <Link
       href={`/parks/${thing.park.slug}/things/${thing.id}`}
-      className="block bg-white border-2 border-black overflow-hidden hover:border-[#1E7B4D] hover:translate-x-0.5 hover:translate-y-0.5 transition-all group"
+      className="block bg-white border-2 border-black overflow-hidden hover:border-[var(--accent)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all group"
     >
       <div className="flex flex-col md:flex-row">
         {/* Image Section - Left Side */}
@@ -66,4 +66,3 @@ export function ThingCard({ thing }: ThingCardProps) {
     </Link>
   )
 }
-

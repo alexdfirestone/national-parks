@@ -5,7 +5,7 @@ import { ParksListSkeleton } from '@/components/skeletons'
 
 export default function ParksPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[var(--accent-soft)]">
       {/* Hero Section - Brutalist Header */}
       <div className="bg-white border-b-4 border-black">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 md:py-8">
@@ -13,7 +13,7 @@ export default function ParksPage() {
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-black leading-none">
               NATIONAL
               <br />
-              <span className="text-[#1E7B4D]">PARKS</span>
+              <span className="text-[var(--accent)]">PARKS</span>
             </h1>
             
             {/* Decorative pattern */}
@@ -56,4 +56,3 @@ async function ParksList() {
 
   return <ParksSearch parks={parks} />
 }
-
