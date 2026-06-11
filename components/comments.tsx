@@ -6,7 +6,6 @@ export async function Comments({ thingId }: { thingId: number }) {
 
   // Organize comments into parent and replies
   const parentComments = comments.filter((c) => !c.parentId)
-  const commentMap = new Map(comments.map((c) => [c.id, c]))
 
   return (
     <div className="space-y-6">
@@ -19,7 +18,7 @@ export async function Comments({ thingId }: { thingId: number }) {
           const replies = comments.filter((c) => c.parentId === comment.id)
           return (
             <div key={comment.id} className="space-y-3">
-              <div className="border-l-4 border-[#1E7B4D] pl-4 py-2">
+              <div className="border-l-4 border-[var(--accent)] pl-4 py-2">
                 <div className="flex flex-wrap items-center gap-2 mb-2">
                   <span className="text-xs font-mono uppercase tracking-wider text-black">
                     {comment.author.name}
@@ -66,12 +65,12 @@ export async function Comments({ thingId }: { thingId: number }) {
             name="body"
             rows={4}
             required
-            className="w-full px-4 py-3 border-2 border-black bg-white focus:border-[#1E7B4D] focus:outline-none transition-colors resize-none"
+            className="w-full px-4 py-3 border-2 border-black bg-white focus:border-[var(--accent)] focus:outline-none transition-colors resize-none"
             placeholder="Share your thoughts..."
           />
           <button
             type="submit"
-            className="px-6 py-3 border-2 border-black bg-[#1E7B4D] text-white font-mono uppercase tracking-wider hover:bg-black transition-colors text-sm"
+            className="px-6 py-3 border-2 border-black bg-[var(--accent)] text-white font-mono uppercase tracking-wider hover:bg-black transition-colors text-sm"
           >
             Post Comment
           </button>
@@ -80,4 +79,3 @@ export async function Comments({ thingId }: { thingId: number }) {
     </div>
   )
 }
-

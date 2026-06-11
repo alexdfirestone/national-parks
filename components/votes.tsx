@@ -11,7 +11,7 @@ export async function Votes({ thingId }: { thingId: number }) {
         <input type="hidden" name="value" value="1" />
         <button
           type="submit"
-          className="p-3 border-2 border-black hover:bg-[#1E7B4D] hover:border-[#1E7B4D] hover:text-white transition-all"
+          className="p-3 border-2 border-black hover:bg-[var(--accent)] hover:border-[var(--accent)] hover:text-white transition-all"
           aria-label="Upvote"
         >
           <svg
@@ -63,4 +63,3 @@ export async function Votes({ thingId }: { thingId: number }) {
     </div>
   )
 }
-

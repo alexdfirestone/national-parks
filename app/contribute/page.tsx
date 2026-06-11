@@ -44,7 +44,7 @@ export default async function ContributePage({
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tighter text-black leading-none mb-4">
             Share Your
             <br />
-            <span className="text-[#1E7B4D]">Thing</span>
+            <span className="text-[var(--accent)]">Thing</span>
           </h1>
           <p className="text-sm md:text-base font-mono uppercase tracking-wider text-gray-700">
             Found something interesting? Share it with the community
@@ -71,19 +71,19 @@ export default async function ContributePage({
           </h3>
           <ul className="space-y-3">
             <li className="flex items-start gap-3">
-              <span className="w-1.5 h-1.5 bg-[#1E7B4D] rounded-full mt-2 flex-shrink-0"></span>
+              <span className="w-1.5 h-1.5 bg-[var(--accent)] rounded-full mt-2 flex-shrink-0"></span>
               <span className="text-sm text-gray-800">Be respectful and constructive</span>
             </li>
             <li className="flex items-start gap-3">
-              <span className="w-1.5 h-1.5 bg-[#1E7B4D] rounded-full mt-2 flex-shrink-0"></span>
+              <span className="w-1.5 h-1.5 bg-[var(--accent)] rounded-full mt-2 flex-shrink-0"></span>
               <span className="text-sm text-gray-800">Share genuine experiences and insights</span>
             </li>
             <li className="flex items-start gap-3">
-              <span className="w-1.5 h-1.5 bg-[#1E7B4D] rounded-full mt-2 flex-shrink-0"></span>
+              <span className="w-1.5 h-1.5 bg-[var(--accent)] rounded-full mt-2 flex-shrink-0"></span>
               <span className="text-sm text-gray-800">Include relevant details and context</span>
             </li>
             <li className="flex items-start gap-3">
-              <span className="w-1.5 h-1.5 bg-[#1E7B4D] rounded-full mt-2 flex-shrink-0"></span>
+              <span className="w-1.5 h-1.5 bg-[var(--accent)] rounded-full mt-2 flex-shrink-0"></span>
               <span className="text-sm text-gray-800">Add photos when possible to illustrate your post</span>
             </li>
           </ul>
@@ -92,4 +92,3 @@ export default async function ContributePage({
     </div>
   )
 }
-

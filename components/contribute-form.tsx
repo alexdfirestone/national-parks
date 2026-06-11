@@ -49,7 +49,7 @@ export function ContributeForm({
           id="parkId"
           name="parkId"
           required
-          className="w-full px-4 py-3 border-2 border-black bg-white focus:border-[#1E7B4D] focus:outline-none transition-colors font-mono text-sm"
+          className="w-full px-4 py-3 border-2 border-black bg-white focus:border-[var(--accent)] focus:outline-none transition-colors font-mono text-sm"
         >
           <option value="">Select a park</option>
           {parks.map((park) => (
@@ -68,7 +68,7 @@ export function ContributeForm({
           id="categoryId"
           name="categoryId"
           required
-          className="w-full px-4 py-3 border-2 border-black bg-white focus:border-[#1E7B4D] focus:outline-none transition-colors font-mono text-sm"
+          className="w-full px-4 py-3 border-2 border-black bg-white focus:border-[var(--accent)] focus:outline-none transition-colors font-mono text-sm"
         >
           <option value="">Select a category</option>
           {categories.map((category) => (
@@ -89,7 +89,7 @@ export function ContributeForm({
           name="title"
           required
           maxLength={200}
-          className="w-full px-4 py-3 border-2 border-black bg-white focus:border-[#1E7B4D] focus:outline-none transition-colors"
+          className="w-full px-4 py-3 border-2 border-black bg-white focus:border-[var(--accent)] focus:outline-none transition-colors"
           placeholder="What did you find?"
         />
       </div>
@@ -103,7 +103,7 @@ export function ContributeForm({
           name="body"
           required
           rows={6}
-          className="w-full px-4 py-3 border-2 border-black bg-white focus:border-[#1E7B4D] focus:outline-none transition-colors resize-none"
+          className="w-full px-4 py-3 border-2 border-black bg-white focus:border-[var(--accent)] focus:outline-none transition-colors resize-none"
           placeholder="Share details about this thing..."
         />
       </div>
@@ -118,7 +118,7 @@ export function ContributeForm({
           name="image"
           accept="image/*"
           onChange={(e) => setImageFile(e.target.files?.[0] || null)}
-          className="w-full px-4 py-3 border-2 border-black bg-white focus:border-[#1E7B4D] focus:outline-none transition-colors file:mr-4 file:py-2 file:px-4 file:border-0 file:text-xs file:font-mono file:uppercase file:tracking-wider file:bg-black file:text-white file:cursor-pointer hover:file:bg-[#1E7B4D]"
+          className="w-full px-4 py-3 border-2 border-black bg-white focus:border-[var(--accent)] focus:outline-none transition-colors file:mr-4 file:py-2 file:px-4 file:border-0 file:text-xs file:font-mono file:uppercase file:tracking-wider file:bg-black file:text-white file:cursor-pointer hover:file:bg-[var(--accent)]"
         />
         {imageFile && (
           <p className="mt-2 text-xs font-mono text-gray-600">
@@ -130,11 +130,10 @@ export function ContributeForm({
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-6 py-4 border-2 border-black bg-[#1E7B4D] text-white font-mono uppercase tracking-wider hover:bg-black disabled:bg-gray-400 disabled:border-gray-400 disabled:cursor-not-allowed transition-colors text-sm"
+        className="w-full px-6 py-4 border-2 border-black bg-[var(--accent)] text-white font-mono uppercase tracking-wider hover:bg-black disabled:bg-gray-400 disabled:border-gray-400 disabled:cursor-not-allowed transition-colors text-sm"
       >
         {isSubmitting ? 'Submitting...' : 'Submit Thing'}
       </button>
     </form>
   )
 }
-

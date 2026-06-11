@@ -24,7 +24,7 @@ export function ThingCard({ thing }: ThingCardProps) {
   return (
     <Link
       href={`/parks/${thing.park.slug}/things/${thing.id}`}
-      className="block bg-white border-2 border-black p-6 hover:border-[#1E7B4D] hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
+      className="block bg-white border-2 border-black p-6 hover:border-[var(--accent)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
     >
       <div className="mb-3">
         <span className="inline-block px-2 py-1 border border-black text-xs font-mono uppercase tracking-wider">
@@ -43,4 +43,3 @@ export function ThingCard({ thing }: ThingCardProps) {
     </Link>
   )
 }
-

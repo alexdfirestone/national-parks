@@ -11,7 +11,7 @@ export function ParkCard({ park }: { park: SanityPark }) {
   return (
     <Link
       href={`/parks/${park.slug.current}`}
-      className="block w-full border-t-2 border-black bg-white hover:bg-gray-50 transition-all group relative overflow-hidden"
+      className="block w-full border-t-2 border-black bg-white hover:bg-[var(--accent-soft)] transition-all group relative overflow-hidden"
     >
       <div className="grid grid-cols-1 md:grid-cols-12 gap-0">
         {/* Image Section */}
@@ -47,7 +47,7 @@ export function ParkCard({ park }: { park: SanityPark }) {
           <div className="flex-1">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-black mb-2 group-hover:text-[#1E7B4D] transition-colors">
+                <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-black mb-2 group-hover:text-[var(--accent)] transition-colors">
                   {park.name}
                 </h3>
                 {park.states && park.states.length > 0 && (
@@ -58,7 +58,7 @@ export function ParkCard({ park }: { park: SanityPark }) {
               </div>
               
               {/* Arrow indicator */}
-              <div className="flex-shrink-0 w-8 h-8 border border-black rounded-full flex items-center justify-center group-hover:bg-[#1E7B4D] group-hover:border-[#1E7B4D] transition-colors">
+              <div className="flex-shrink-0 w-8 h-8 border border-black rounded-full flex items-center justify-center group-hover:bg-[var(--accent)] group-hover:border-[var(--accent)] transition-colors">
                 <svg
                   className="w-4 h-4 group-hover:text-white transition-colors"
                   fill="none"
@@ -79,8 +79,7 @@ export function ParkCard({ park }: { park: SanityPark }) {
       </div>
 
       {/* Hover accent line */}
-      <div className="absolute bottom-0 left-0 h-0.5 bg-[#1E7B4D] w-0 group-hover:w-full transition-all duration-300"></div>
+      <div className="absolute bottom-0 left-0 h-0.5 bg-[var(--accent)] w-0 group-hover:w-full transition-all duration-300"></div>
     </Link>
   )
 }
-
